@@ -15,7 +15,7 @@
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| itemname| string | null: false |
+| item_name| string | null: false |
 | text   | text    | null: false |
 | category| string | null: false |
 | status | string  | null: false |
@@ -30,9 +30,9 @@
 | prefectures | string | null: false |
 | city    | string  | null: false |
 | building | string | null: false |
-|phonenumber | integer | null:false
+|phone_number | integer | null:false
 
-## buyer テーブル
+##  テーブル
 
 | Column  | Type       | Options        |
 | ------- | ---------- | -------------- |
