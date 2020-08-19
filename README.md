@@ -28,11 +28,11 @@
 | shipping_days | integer | null: false |
 | shipping_origin | string | null: false |
 | delivery_fee | integer | null: false |
+| user_id | integer | null: false, foregin_key:true |
 
 ## Association
 - belongs_to :users
 - has_one :transaction
-- has_one :address
 
 ## address テーブル
 
@@ -42,10 +42,10 @@
 | prefectures_id | integer | null: false |
 | city    | string  | null: false |
 | building | string |              |
+| address | strings | null: false |
 | phone_number | string | null:false |
 
 ## Association
-- belongs_to :items
 - belongs_to :transaction
 
 ##  transactionテーブル   #取引
