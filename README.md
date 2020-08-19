@@ -13,7 +13,7 @@
 
 ### Association
 - has_many :items
-- has_one :transaction
+- has_many :transaction
 
 ## items テーブル
 
@@ -26,7 +26,7 @@
 | image  |  text   | null: false |
 | price  | integer | null: false |
 | shipping_days | integer | null: false |
-| shipping_origin | string | null: false |
+| shipping_origin | integer | null: false |
 | delivery_fee | integer | null: false |
 | user_id | integer | null: false, foregin_key:true |
 
@@ -44,6 +44,7 @@
 | building | string |              |
 | address | strings | null: false |
 | phone_number | string | null:false |
+| transaction_id | integer | null: false, foregin_key: true |
 
 ## Association
 - belongs_to :transaction
@@ -56,6 +57,6 @@
 | item_id | integer | null: false |
 
 ## Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one :address
