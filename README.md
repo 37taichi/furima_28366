@@ -13,7 +13,7 @@
 
 ### Association
 - has_many :items
-- has_many :transaction
+- has_many :item_purchases
 
 ## items テーブル
 
@@ -32,7 +32,7 @@
 
 ## Association
 - belongs_to :users
-- has_one :transaction
+- has_one :item_purchases
 
 ## address テーブル
 
@@ -42,14 +42,14 @@
 | prefectures_id | integer | null: false |
 | city    | string  | null: false |
 | building | string |              |
-| address | strings | null: false |
+| address | string | null: false |
 | phone_number | string | null:false |
-| transaction_id | integer | null: false, foregin_key: true |
+| item_purchases_id | integer | null: false, foregin_key: true |
 
 ## Association
-- belongs_to :transaction
+- belongs_to :item_purchases
 
-##  transactionテーブル   #取引
+##  item_purchasesテーブル   #取引
 
 | Column  | Type    | Options     |
 | ------- | ------- | ----------- |
