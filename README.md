@@ -28,10 +28,10 @@
 | shipping_days | integer | null: false |
 | shipping_origin | integer | null: false |
 | delivery_fee | integer | null: false |
-| user_id | references | null: false, foregin_key:true |
+| user | references | null: false, foregin_key:true |
 
 ## Association
-- belongs_to :users
+- belongs_to :user
 - has_one :item_purchase
 
 ## address テーブル
@@ -44,7 +44,7 @@
 | building | string |              |
 | address | string | null: false |
 | phone_number | string | null:false |
-| item_purchases_id | references | null: false, foregin_key: true |
+| item_purchases | references | null: false, foregin_key: true |
 
 ## Association
 - belongs_to :item_purchase
@@ -53,8 +53,8 @@
 
 | Column  | Type    | Options     |
 | ------- | ------- | ----------- |
-| user_id | references | null: false, foregin_key: true|   
-| item_id | references | null: false, foregin_key: true |
+| user | references | null: false, foregin_key: true|   
+| item | references | null: false, foregin_key: true |
 
 ## Association
 - belongs_to :user
