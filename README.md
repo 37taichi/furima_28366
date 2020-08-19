@@ -11,6 +11,10 @@
 | birthday | date | null: false |
 | email    | string | null: false |
 
+### Association
+- has_many :items
+- has_one :transaction
+
 ## items テーブル
 
 | Column | Type   | Options     |
@@ -25,6 +29,11 @@
 | shipping_origin | string | null: false |
 | delivery_fee | integer | null: false |
 
+## Association
+- belongs_to :users
+- has_one :transaction
+- has_one :address
+
 ## address テーブル
 
 | Column | Type       | Options                        |
@@ -33,7 +42,11 @@
 | prefectures_id | integer | null: false |
 | city    | string  | null: false |
 | building | string |              |
-|phone_number | string | null:false
+| phone_number | string | null:false |
+
+## Association
+- belongs_to :items
+- belongs_to :transaction
 
 ##  transactionテーブル   #取引
 
@@ -41,3 +54,8 @@
 | ------- | ------- | ----------- |
 | user_id | integer | null: false |   
 | item_id | integer | null: false |
+
+## Association
+- belongs_to :users
+- belongs_to :items
+- has_one :address
