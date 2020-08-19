@@ -8,31 +8,36 @@
 | family_name_kana     | string | null: false |
 | nickname | string | null: false |
 | password | string | null: false |
-| birthday | integer| null: false |
+| birthday | date | null: false |
 | email    | string | null: false |
 
 ## items テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| item_name| string | null: false |
+| name   | string | null: false |
 | text   | text    | null: false |
-| category| string | null: false |
-| status | string  | null: false |
+| category| integer | null: false |
+| status | integer  | null: false |
 | image  |  text   | null: false |
 | price  | integer | null: false |
+| shipping_days | integer | null: false |
+| shipping_origin | string | null: false |
+| delivery_fee | integer | null: false |
 
 ## address テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| postalcode | integer | null: false |
-| prefectures | string | null: false |
+| postalcode | string | null: false |
+| prefectures_id | integer | null: false |
 | city    | string  | null: false |
-| building | string | null: false |
-|phone_number | integer | null:false
+| building | string |              |
+|phone_number | string | null:false
 
-##  テーブル
+##  transactionテーブル   #取引
 
-| Column  | Type       | Options        |
-| ------- | ---------- | -------------- |
+| Column  | Type    | Options     |
+| ------- | ------- | ----------- |
+| user_id | integer | null: false |   
+| item_id | integer | null: false |
