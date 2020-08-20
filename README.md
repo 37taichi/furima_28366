@@ -1,24 +1,62 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| first_name     | string | null: false |
+| family_name     | string | null: false |
+| first_name_kana     | string | null: false |
+| family_name_kana     | string | null: false |
+| nickname | string | null: false |
+| password | string | null: false |
+| birthday | date | null: false |
+| email    | string | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :item_purchases
 
-* Ruby version
+## items テーブル
 
-* System dependencies
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| name   | string | null: false |
+| text   | text    | null: false |
+| category| integer | null: false |
+| status | integer  | null: false |
+| image  |  text   | null: false |
+| price  | integer | null: false |
+| shipping_days | integer | null: false |
+| shipping_origin | integer | null: false |
+| delivery_fee | integer | null: false |
+| user | references | null: false, foregin_key:true |
 
-* Configuration
+## Association
+- belongs_to :user
+- has_one :item_purchase
 
-* Database creation
+## address テーブル
 
-* Database initialization
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| postalcode | string | null: false |
+| prefectures_id | integer | null: false |
+| city    | string  | null: false |
+| building | string |              |
+| address | string | null: false |
+| phone_number | string | null:false |
+| item_purchases | references | null: false, foregin_key: true |
 
-* How to run the test suite
+## Association
+- belongs_to :item_purchase
 
-* Services (job queues, cache servers, search engines, etc.)
+##  item_purchasesテーブル   #取引
 
-* Deployment instructions
+| Column  | Type    | Options     |
+| ------- | ------- | ----------- |
+| user | references | null: false, foregin_key: true|   
+| item | references | null: false, foregin_key: true |
 
-* ...
+## Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
