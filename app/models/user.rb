@@ -6,16 +6,24 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
-  namae = /\A[ぁ-んァ-ン一-龥]+\z/
+  namae = /\A[ぁ-んァ-ン一-龥]/
   kana = /\A[ァ-ン]+\z/
 
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :encrypted_password, presence: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX }
-  validates :first_name, presence: true, format: { with: namae }
-  validates :family_name, presence: true, format: { with: namae }
-  validates :first_name_kana, presence: true, format: { with: kana }
-  validates :family_name_kana, presence: true, format: { with: kana }
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX, message: "a" }
+  validates :password, presence: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX, message: "b" }
+  
+  with_options presence: true,format: { with: namae } do
+    validates :first_name
+    validates :family_name
+  end
+  with_options presence: true,format: { with: kana } do
+    validates :first_name_kana
+    validates :family_name_kana
+  end
   validates :birthday, presence: true
-
 end
+
+# with_options presence: true,format: { with: kana } do
+#   validates :karamumei
+# end
