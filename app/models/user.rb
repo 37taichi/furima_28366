@@ -13,17 +13,14 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX, message: "a" }
   validates :password, presence: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX, message: "b" }
   
-  with_options presence: true,format: { with: namae } do
+  with_options presence: true,format: { with: namae, message: "is invalid. Input full-width characters." } do
     validates :first_name
     validates :family_name
   end
-  with_options presence: true,format: { with: kana } do
+  with_options presence: true,format: { with: kana, message: "is invalid. Input full-width kana characters." } do
     validates :first_name_kana
     validates :family_name_kana
   end
   validates :birthday, presence: true
 end
 
-# with_options presence: true,format: { with: kana } do
-#   validates :karamumei
-# end
