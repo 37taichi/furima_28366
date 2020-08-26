@@ -10,8 +10,8 @@ class User < ApplicationRecord
   kana = /\A[ァ-ン]+\z/
 
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX, message: "a" }
-  validates :password, presence: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX, message: "b" }
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX, message: "is invalid" }
+  validates :password, presence: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX, message: "cannot be saved unless it is mixed alphanumeric" }
   
   with_options presence: true,format: { with: namae, message: "is invalid. Input full-width characters." } do
     validates :first_name
