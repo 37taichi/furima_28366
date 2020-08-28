@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  has_many :items
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
@@ -21,6 +23,8 @@ class User < ApplicationRecord
     validates :first_name_kana
     validates :family_name_kana
   end
-  validates :birthday, presence: true
+  validates :birthday, presence: true do
+    
+  end
 end
 
