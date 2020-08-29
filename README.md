@@ -25,7 +25,7 @@
 | status | integer  | null: false |
 | image  |  text   | null: false |
 | price  | integer | null: false |
-| shipping_days | integer | null: false |
+| shipping_day | integer | null: false |
 | shipping_origin | integer | null: false |
 | delivery_fee | integer | null: false |
 | user | references | null: false, foregin_key:true |

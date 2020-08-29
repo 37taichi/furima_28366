@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :status_id
-    validates :shipping_days_id
+    validates :shipping_day_id
     validates :shipping_origin_id
     validates :delivery_fee_id
   end
