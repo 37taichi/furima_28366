@@ -35,10 +35,10 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
     end
-    it 'shipping_days_idを選択していないと保存できないこと' do
-      @item.shipping_days_id = 1
+    it 'shipping_day_idを選択していないと保存できないこと' do
+      @item.shipping_day_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping days can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping day can't be blank")
     end
     it 'shipping_origin_idを選択していないと保存できないこと' do
       @item.shipping_origin_id = 1
