@@ -16,20 +16,8 @@ class ItemsController < ApplicationController
   def edit
   end
 
-  def destroy
+  def delete
   end
-
-  def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    if item.update(item_params)
-      redirect_to action: :show
-    else
-      render :edit
-    end
-  end
-
-
 
   def create
     @item = Item.new(item_params)
