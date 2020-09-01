@@ -18,19 +18,16 @@ class Item < ApplicationRecord
     validates :delivery_fee_id
   end
 
-  with_options presence: true  do
+  with_options presence: true do
     validates :name
     validates :text
   end
 
   validates :price, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to:9999999, message: "is out of setting range"}
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range' }
 
   validate :was_attached?
   def was_attached?
-    unless self.image.attached?
-      errors.add(:image, 'ファイルを添付してください')
-    end
-  
+    errors.add(:image, 'ファイルを添付してください') unless image.attached?
   end
 end

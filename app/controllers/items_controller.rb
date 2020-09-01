@@ -1,11 +1,10 @@
 class ItemsController < ApplicationController
-  
   before_action :move_to_index, except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update]
   before_action :current_user?, only: [:edit, :destroy]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -36,22 +35,18 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
   def create
     @item = Item.new(item_params)
     if @item.valid?
       @item.save!
-      return redirect_to root_path
+      redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in?
   end
 
   private
@@ -68,5 +63,5 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end  
+  end
 end
