@@ -1,13 +1,16 @@
 class ItemPurchaseTransaction
   include ActiveModel::Model
   attr_accessor :token, :user_id, :item_id, :postalcode, :shipping_origin_id, :city, :house_number, :building, :telephone
+  POSTAL_CODE_REGEX = /\A[0-9]{3}-[0-9]{4}\z/.freeze
+  CITY_CODE_REGEX = /\A[ぁ-んァ-ン一-龥]/
+  TELEPHONE_CODE_REGEX =  /\A\d{10,11}\z/
 
   with_options presence: true do
-    validates :postalcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+    validates :postalcode, format: { with: POSTAL_CODE_REGEX, message: 'is invalid. Include hyphen(-)' }
     validates :shipping_origin_id, numericality: { other_than: 1, message: "can't be blank" }
-    validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'is invalid. Input full-width characters.' }
+    validates :city, format: { with: CITY_CODE_REGEX, message: 'is invalid. Input full-width characters.' }
     validates :house_number
-    validates :telephone, format: { with: /\A\d{10,11}\z/, message: 'is invalid. ' }
+    validates :telephone, format: { with: TELEPHONE_CODE_REGEX, message: 'is invalid. ' }
     validates :token
   end
 
