@@ -8,3 +8,4 @@ FactoryBot.define do
     token               { 'card' }
   end
 end
+ 
