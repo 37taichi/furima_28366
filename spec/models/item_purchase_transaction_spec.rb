@@ -12,7 +12,7 @@ RSpec.describe ItemPurchaseTransaction, type: :model do
       expect(@item_purchase_transaction.errors.full_messages).to include("Postalcode can't be blank")
     end
     it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
-      @item_purchase_transaction.postalcode = '1234567'
+      @item_purchase_transaction.postalcode = ”1234567”
       @item_purchase_transaction.valid?
       expect(@item_purchase_transaction.errors.full_messages).to include("Postalcode is invalid. Include hyphen(-)")
     end
@@ -37,12 +37,12 @@ RSpec.describe ItemPurchaseTransaction, type: :model do
       expect(@item_purchase_transaction.errors.full_messages).to include("Telephone can't be blank")
     end
     it 'telephoneにはハイフンは不要であること' do
-      @item_purchase_transaction.telephone = '090-1111-2222'
+      @item_purchase_transaction.telephone = ’090-1111-2222’
       @item_purchase_transaction.valid?
       expect(@item_purchase_transaction.errors.full_messages).to include("Telephone is invalid. ")
     end
     it 'telephoneは11桁以内であること' do
-      @item_purchase_transaction.telephone = '090011112222'
+      @item_purchase_transaction.telephone = ’090011112222’
       @item_purchase_transaction.valid?
       expect(@item_purchase_transaction.errors.full_messages).to include("Telephone is invalid. ")
     end

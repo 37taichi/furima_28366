@@ -8,7 +8,8 @@ class ItemPurchaseTransaction
     validates :shipping_origin_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
     validates :house_number
-     validates :telephone, format: {with: /\A\d{10,11}\z/, message: "is invalid. "}
+    validates :telephone, format: {with: /\A\d{10,11}\z/, message: "is invalid. "}
+    validates :token
   end
 
   def save
