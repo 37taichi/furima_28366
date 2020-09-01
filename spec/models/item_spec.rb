@@ -10,18 +10,18 @@ RSpec.describe Item, type: :model do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@item).to be_valid
     end
-    it "画像は1枚必須であること" do
+    it '画像は1枚必須であること' do
       @item.image = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Image ファイルを添付してください")
+      expect(@item.errors.full_messages).to include('Image ファイルを添付してください')
     end
-    it "nameが空だと登録できない" do
-      @item.name = ""
+    it 'nameが空だと登録できない' do
+      @item.name = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Name can't be blank")
     end
-    it "textが空だと登録できない" do
-      @item.text = ""
+    it 'textが空だと登録できない' do
+      @item.text = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Text can't be blank")
     end
@@ -58,12 +58,12 @@ RSpec.describe Item, type: :model do
     it 'priceが300円未満では保存できないこと' do
       @item.price = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
     it 'priceが9,999,999円を超過すると保存できないこと' do
-      @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
   end
 end
