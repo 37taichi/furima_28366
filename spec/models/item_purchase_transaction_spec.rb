@@ -5,7 +5,11 @@ RSpec.describe ItemPurchaseTransaction, type: :model do
     before do
       @item_purchase_transaction = FactoryBot.build(:item_purchase_transaction)
     end
-
+    it 'tokenが空だと保存できないこと' do
+      @item_purchase_transaction.token = nil
+      @item_purchase_transaction.valid?
+      expect(@item_purchase_transaction.errors.full_messages).to include("Token can't be blank")
+    end
     it 'postalcodeが空だと保存できないこと' do
       @item_purchase_transaction.postalcode = nil
       @item_purchase_transaction.valid?

@@ -1,10 +1,11 @@
 class TransactionController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  
+  before_action :set_item, only: [:index, :create]
+  before_action :not_selling_user?, only: [:index,:create]
+  before_action :sell_out?, only: [:index,:create]
+
   def index
     @item_purchase = ItemPurchaseTransaction.new
-    @item = Item.find(params[:item_id])
-
   end
 
   def new
@@ -12,7 +13,6 @@ class TransactionController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @item_purchase = ItemPurchaseTransaction.new(item_purchase_params)
     if @item_purchase.valid?
       pay_item
@@ -34,11 +34,28 @@ class TransactionController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_89a643a6601d154ded7d539d"  # PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.price,  # 商品の値段
       card: params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類(日本円)
     )
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def not_selling_user?
+    if current_user == @item.user
+      redirect_to root_path
+    end
+  end
+
+  def sell_out? 
+    if @item.item_purchase
+    redirect_to root_path
+    end
+  end
+
 end
